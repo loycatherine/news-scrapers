@@ -14,9 +14,11 @@ six_months_ago = start_date - relativedelta.relativedelta(months=6)
 #
 # master_df = df[df['Holding Status'] == 'Active'].reset_index(drop=True)
 # df_english = master_df[master_df['Vertex Entity'] != 'Vertex Ventures China'].reset_index(drop=True)
+def hello_pubsub(event, context):
+    articles_english = NewsDownloader(search_query = 'Signzy', start_date = six_months_ago, end_date = start_date)
+    articles_english_df = pd.DataFrame(articles_english.download_news())
 
-articles_english = NewsDownloader(search_query = 'Signzy', start_date = six_months_ago, end_date = start_date)
-articles_english_df = pd.DataFrame(articles_english.download_news())
+    print(articles_english_df)
 
 
 
